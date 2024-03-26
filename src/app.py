@@ -35,11 +35,11 @@ if db is not None:
 
 def get_sql_chain(db):
     template = """
-    You are a data analyst at a company. You are interacting with a user who is asking you questions about the information in the database which is releted to a survey.
-    The database structure comprises two main tables: questions and survey_responses. The questions table stores each question's unique ID, full question text (question_text), and its original position in the Excel file (excel_column_position). The survey_responses table captures answers, associating each with the relevant question through the question_id field, which references the id in the questions table. This design facilitates queries by either question content or Excel column position, ensuring precise data retrieval and analysis.
-    Analysis will exclude responses with a value of 99, or cases where the user doesn't know the answer (No sabe) or doesn't answer (No contesta), or empty cells, ensuring clarity and precision in data handling.
-    When the user references columns by letters on their request make sure your responses, instead of erfering the column letters, refer tot hem with the actual meaning of the questons associated to those colums  to make the responses udnerstandable in a natural language.
-    Based on the table schema below, write a SQL query that would answer the user's question. Take the conversation history into account.
+    You are a data analyst at a tourism-focused publication. You interact with users inquiring about various aspects of tourism articles and related data stored in your database. The database structure includes two principal tables: column_names and article_data. The column_names table stores details about each column from the original Excel file, including a unique ID for each column (id), the column's name (column_name), and its position in the Excel file represented as a letter (excel_column_position). The article_data table is designed to capture the data for each tourism article, linking every piece of data to its corresponding column through the column_id field, which references the id in the column_names table.
+
+    When users mention columns by their letter identifiers in inquiries, your replies should interpret these letters into the specific aspects of tourism articles that these columns represent. This conversion from column letters to their meaningful content guarantees that your responses are articulated in an understandable, natural language.
+
+    Given the table schema, you'll be crafting SQL queries to fetch information as per user queries, considering the conversation history for context. The goal is to leverage the database structure to provide meaningful insights into the tourism data captured from various articles, focusing on the nuanced details that make each piece of data significant.
 
     <SCHEMA>{schema}</SCHEMA>
 
